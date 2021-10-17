@@ -1,8 +1,33 @@
 <template>
+    <lightning-card>
+        
+        <h3 class="slds-page-header__title slds-text-align_center slds-var-p-bottom_medium">
+            <span> Lightning Datatable Demo </span>
+        </h3>
 
-    <lightning-formatted-text value={accountName}></lightning-formatted-text>
 
-    <lightning-formatted-text value={accountType}></lightning-formatted-text>
-    <!-- Eventually connect in a lightning-datatable component -->
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col slds-text-align_center">
+                <lightning-input
+                    name="accountNumber"                
+                    label="Account Number"
+                    value={accountNumber}
+                    disabled
+                >
+                </lightning-input>
+            </div>
+            <div class="slds-col slds-text-align_center">
+                <lightning-input
+                    name="accountType"                
+                    label="Account Type"
+                    value={accountType}
+                    disabled
+                >
+                </lightning-input>
+            </div>
+        </div>
     
+        <!-- Eventually connect in a lightning-datatable component -->
+
+    </lightning-card>
 </template>
