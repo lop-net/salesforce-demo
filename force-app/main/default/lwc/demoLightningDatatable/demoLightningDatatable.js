@@ -1,23 +1,27 @@
 import { LightningElement, track } from 'lwc';
 
-export default class DemoLightningDatatable extends LightningElement {
-
-    @track accountNumber;
-    @track accountType;
-
-    connectedCallback() {
-        console.log('This is fired when the component is connected to.');
-
-        this.accountNumber = SAMPLE_DATA.accountNumber;
-        this.accountType = SAMPLE_DATA.accountType;
-    }
-
-    renderedCallback() {
-        console.log('This is fired when the component is rendered. (can be more than once.');
-    }
 
 
-}
+const actions = [
+    {},
+];
+
+const columns = [
+    {label: 'Creation Date', fieldName: 'transactionDate', type: 'date-local', typeAttributes:{ month: "2-digit", day: "2-digit" }, hideDefaultActions: true},
+    {label: 'CTN', fieldName: 'subscriberNumber', type: 'phone', hideDefaultActions: true,  typeAttributes: { disabled: true },},
+    {label: 'Bill Date', fieldName: 'nextBillDate', type: 'date-local', typeAttributes: { month: "2-digit", day: "2-digit" }, hideDefaultActions: true},
+    {label: 'BAN/CPID', fieldName: 'entSeqNo', hideDefaultActions: true},
+    {label: 'Code', fieldName: 'transactionCode', hideDefaultActions: true},
+    {label: 'Description', fieldName: 'description', hideDefaultActions: true},
+    {label: 'Amount', fieldName: 'amount', type: 'currency', hideDefaultActions: true},
+    {label: 'Tax', fieldName: 'taxAmount', type: 'currency', hideDefaultActions: true},
+    {label: 'Total', fieldName: 'totalAmount', type: 'currency', hideDefaultActions: true},
+    {label: 'Type', fieldName: 'type', hideDefaultActions: true},
+    {
+        type: 'action',
+        typeAttributes: { rowActions: actions },
+    },
+]
 
 const SAMPLE_DATA = {
     "accountNumber": "325310161",
@@ -29,7 +33,7 @@ const SAMPLE_DATA = {
             "description": "MANUAL_2021911612_WVOO2V4F,139D8C3F-28F4-43A9-9964-DD9EA51F10EE",
             "transactionDate": "2021-09-01",
             "nextBillDate": "2021-11-05",
-            "subscriberNumber": "",
+            "subscriberNumber": "2145385080",
             "amount": "5.00",
             "taxAmount": "0.00",
             "totalAmount": "5.00",
@@ -67,3 +71,25 @@ const SAMPLE_DATA = {
         }
     ]
 };
+
+export default class DemoLightningDatatable extends LightningElement {
+
+    columns = columns;
+    data = SAMPLE_DATA.pendingAdjCredits;
+    
+    @track accountNumber;
+    @track accountType;
+
+    connectedCallback() {
+        console.log('This is fired when the component is connected to.');
+
+        this.accountNumber = SAMPLE_DATA.accountNumber;
+        this.accountType = SAMPLE_DATA.accountType;
+    }
+
+    renderedCallback() {
+        console.log('This is fired when the component is rendered. (can be more than once.');
+    }
+
+    handleRowAction(event) {}
+}

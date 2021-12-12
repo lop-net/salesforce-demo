@@ -30,6 +30,26 @@
         </div>
     
         <!-- Eventually connect in a lightning-datatable component -->
-
+        <div class="slds-box slds-box_xx-small">
+            <div class="slds-grid slds-p-bottom_x-small">
+                <div class="slds-col">
+                    <lightning-icon icon-name="standard:contract"></lightning-icon>
+                    <span><b> Pending Charges & Credits</b></span>
+                </div>
+                <div class="slds-col slds-text-align_right">
+                    <lightning-button label="Add New Charge" onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
+                    <lightning-button label="Refresh" onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
+                    <lightning-button label="View All" onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
+                </div>
+            </div>
+            <lightning-datatable
+                class="slds-table slds-scrollable_x slds-scrollable_y"
+                key-field="id"
+                data={data}
+                columns={columns}
+                hide-checkbox-column>
+                onrowaction={handleRowAction}>
+            </lightning-datatable>
+        </div>
     </lightning-card>
 </template>
